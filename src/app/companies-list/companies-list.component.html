@@ -1,0 +1,87 @@
+<hr />
+<div class="container">
+    <button class="btn btn-success" (click)="loadAllCompanies()">View All Companies</button>
+    |
+    <button class="btn btn-success" (click)="showFind()">Find By Name</button>
+    |
+    <button class="btn btn-success" (click)="showUpdate()">Update A Company</button>
+    |
+    <button class="btn btn-success" (click)="showAdd()">Add A Company</button>
+    |
+    <button class="btn btn-success" (click)="showDelete()">Remove A Company</button>
+</div>
+
+<br/>
+
+<div *ngIf="viewAllFlag" class="container">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>S. No.</th>
+                <th>Company Name</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let company of companies; let rowIndex=index">
+                <td>{{rowIndex+1}}</td>
+                <td>{{company.name}}</td>
+                <td>{{company.details}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div *ngIf="findFlag" class = "container">
+    <h4>Search By Company Name</h4>
+    <input type="text" placeholder="Enter Company Name" #cName ngModel><br /><br/>
+    <button (click)="findByName(cName.value)">Search Company</button>
+    
+    <div *ngIf="showTableFlag">
+        <br/>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>S. No.</th>
+                    <th>Company Name</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let company of company; let rowIndex=index">
+                    <td>{{rowIndex+1}}</td>
+                    <td>{{company.name}}</td>
+                    <td>{{company.details}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div *ngIf="updateFlag" class = "container">
+    <h4>Update A Company</h4>
+    <form #updateForm="ngForm" (ngSubmit)="updateCompany(updateForm.value)">
+        <input type="text" placeholder="Enter Company Name" name="name" ngModel><br /><br/>
+        <input type="text" placeholder="Enter Details" name="details" ngModel><br /><br/>
+        <input type="submit" value="Update A Company">
+    </form>
+    {{message}}
+</div>
+
+<div *ngIf="addFlag" class = "container">
+    <h4>Add A Company</h4>
+    <form #addForm="ngForm" (ngSubmit)="addCompany(addForm.value)">
+        <input type="text" placeholder="Enter Company Name" name="name" ngModel><br /><br/>
+        <input type="text" placeholder="Enter Details" name="details" ngModel><br /><br/>
+        <input type="submit" value="Add A Company">
+    </form>
+    {{message}}
+</div>
+
+<div *ngIf="deleteFlag" class = "container">
+    <h4>Delete A Product</h4>
+    <input type="text" placeholder="Enter Company Code" #code ngModel><br /><br/>
+    <button (click)="deleteCompany(code.value)">Delete A Product</button>
+    <br />
+    {{message}}
+</div>
