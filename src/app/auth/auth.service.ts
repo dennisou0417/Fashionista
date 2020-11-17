@@ -58,7 +58,19 @@ export class AuthService {
     return this.decodedToken.username;
   }
 
-  // public isAdmin(): boolean {
-  //   return this.decodedToken.
-  // }
+  public isAdmin(): boolean {
+    if(this.decodedToken.accType == "Admin"){
+       return true;
+    }else{
+      return false;
+    }
+  }
+
+  public isCustomer():boolean {
+    if(this.decodedToken.accType == "Customer"){
+      return true;
+    }else{
+      return false;
+    }
+  }
 }

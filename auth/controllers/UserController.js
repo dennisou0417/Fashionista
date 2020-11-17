@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken')
 exports.register = function (req, res) {
   const { username, email, password, passwordConfirmation, accType } = req.body
   if (!email || !password || !accType) {
-    return res.status(422).json({ 'error': 'Please provide email or password' })
+    return res.status(422).json({ 'error': 'Please provide email or password or account type' })
   }
 
   if (password != passwordConfirmation) {
@@ -14,7 +14,7 @@ exports.register = function (req, res) {
 
   User.findOne({ email }, function (err, existingUser) {
     if (err) {
-      return res.status(422).json({ 'error': 'Oops! Something went Wrong' })
+      return res.status(422).json({ 'error': 'Email Exists Already' })
     }
     if (existingUser) {
       return res.status(422).json({ 'error': 'User already exists' })
@@ -56,7 +56,8 @@ exports.login = function (req, res) {
       json_token = jwt.sign(
         {
           userId: user.id,
-          username: user.username
+          username: user.username,
+          accType: user.accType
         },
         env.secret,
         { expiresIn: '1h' })

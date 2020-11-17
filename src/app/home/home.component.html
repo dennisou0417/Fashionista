@@ -1,13 +1,13 @@
 <div *ngIf="notify" class="alert alert-success container marge">
     {{ notify }}
 </div>
-
-<div *ngIf="notify" class="container">
+<hr />
+<div *ngIf="loggedIn == true" class="container">
     <a class="nav-link btn btn-success" [routerLink]="['/product-list']">Manage Products</a>
     <br />
     <a class="nav-link btn btn-success" [routerLink]="['/companies-list']">Manage Companies</a>
 </div>
 
-<div *ngIf="notify == null" class="container">
+<div *ngIf="loggedIn == false" class="container">
     Please Login To Continue.
 </div>
