@@ -14,8 +14,12 @@ export class ProductService {
     return this.httpClient.get<Product[]>("http://localhost:5000/products");
   }
 
-  getProductByName(name):Observable<Product>{
-    return this.httpClient.get<Product>("http://localhost:5000/products/"+name);
+  getProductByName(code):Observable<Product>{
+    return this.httpClient.get<Product>("http://localhost:5000/products/"+code);
+  }
+
+  getProductByCompany(companyName):Observable<Product[]>{
+    return this.httpClient.get<Product[]>("http://localhost:5000/productsByBrand/"+companyName);
   }
 
   storeProduct(productRef):Observable<any>{

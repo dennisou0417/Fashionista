@@ -1,3 +1,4 @@
+import { AuthService } from './../auth/auth.service';
 import { CompanyService } from './../services/company.service';
 import { ProductService } from './../services/product.service';
 import { Component, OnInit } from '@angular/core';
@@ -20,8 +21,9 @@ export class ProductListComponent implements OnInit {
   updateFlag:boolean = false;
   addFlag:boolean = false;
   deleteFlag = false;
+  brandFlag:boolean = false;
   message:string = "";
-  constructor(public productService:ProductService, public companyService:CompanyService) { }
+  constructor(public productService:ProductService, public companyService:CompanyService, public auth:AuthService) { }
 
   ngOnInit(): void {
     this.companyService.getCompanies().subscribe(data => {this.companies = data});
@@ -113,6 +115,12 @@ export class ProductListComponent implements OnInit {
 
   deleteCompany(code):void{
     this.productService.deleteProduct(code).subscribe(result => this.message=result.msg);
+  }
+
+  findByCompany(companyId):void{
+    this.productService.getProductByCompany(companyId).subscribe(result => this.products=result);
+    console.log(companyId);
+    this.viewAllFlag=true;
   }
 
 }

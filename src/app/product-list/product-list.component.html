@@ -1,17 +1,31 @@
 <hr />
 <div class="container">
-    <button class="btn btn-success" (click)="loadAllProducts()">View All Products</button>
-    |
-    <button class="btn btn-success" (click)="showFind()">Find By Product Code</button>
-    |
-    <button class="btn btn-success" (click)="showUpdate()">Update A Product</button>
-    |
-    <button class="btn btn-success" (click)="showAdd()">Add A Product</button>
-    |
-    <button class="btn btn-success" (click)="showDelete()">Remove A Product</button>
+    <div *ngIf="auth.isAdmin()">
+        <button class="btn btn-success" (click)="loadAllProducts()">View All Products</button>
+        |
+        <button class="btn btn-success" (click)="showFind()">Find By Product Code</button>
+        |
+        <button class="btn btn-success" (click)="showUpdate()">Update A Product</button>
+        |
+        <button class="btn btn-success" (click)="showAdd()">Add A Product</button>
+        |
+        <button class="btn btn-success" (click)="showDelete()">Remove A Product</button>
+    </div>
+
+    <div *ngIf="auth.isCustomer()">
+        <button class="btn btn-success" (click)="loadAllProducts()">Shop All Products</button>
+    </div>
 </div>
 
 <br/>
+
+<div *ngIf="auth.isCustomer() == true" class="container">
+    <select class="selectpicker dropdown" name="company" data-live-search="true" #selectCompany ngModel>
+        <option *ngFor="let c of companies" [value]="c._id">{{c.name}}</option>
+    </select>
+    <br /><br />
+    <button (click)="findByCompany(selectCompany.value)">Filter By Brand</button>
+</div>
 
 <div *ngIf="viewAllFlag" class="container">
     <table class="table table-striped">
@@ -23,6 +37,7 @@
                 <th>Details</th>
                 <th>Image</th>
                 <th>Price</th>
+                <th *ngIf="auth.isCustomer()">Add To Cart</th>
             </tr>
         </thead>
         <tbody>
@@ -33,6 +48,7 @@
                 <td>{{p.details}}</td>
                 <td><img class="productImage" src="{{p.image}}"></td>
                 <td>${{p.price}}</td>
+                <td *ngIf="auth.isCustomer()">Add To Cart</td>
             </tr>
         </tbody>
     </table>

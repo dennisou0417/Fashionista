@@ -1,4 +1,5 @@
 var ProductModel = require("../models/product");
+var mongoose = require("mongoose")
 
 var GetProductInfo = (req, res) => {
     ProductModel.find({}, (err, data) => {
@@ -9,7 +10,16 @@ var GetProductInfo = (req, res) => {
 
 var GetProductByCode = (req, res) => {
     var code = req.params.code;
+    console.log(code);
     ProductModel.find({code:code}, (err, data) => {
+        if(err) throw err;
+        res.json(data);
+    }).populate('company');
+}
+
+var GetProductByCompany = (req, res) => {
+    var company = req.params.brand;
+    ProductModel.find({company:company}, (err, data) => {
         if(err) throw err;
         res.json(data);
     }).populate('company');
@@ -77,4 +87,4 @@ var DeleteProduct = (req, res) => {
     })
 }
 
-module.exports = {GetProductInfo, GetProductByCode, StoreProduct, UpdateProduct, DeleteProduct};
+module.exports = {GetProductInfo, GetProductByCode, GetProductByCompany, StoreProduct, UpdateProduct, DeleteProduct};
