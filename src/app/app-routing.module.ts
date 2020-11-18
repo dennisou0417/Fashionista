@@ -1,3 +1,4 @@
+import { CartComponent } from './cart/cart.component';
 import { ProductListComponent } from './product-list/product-list.component';
 
 import { NgModule } from '@angular/core';
@@ -13,7 +14,8 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'companies-list', component: CompaniesListComponent, canActivate: [AuthGuard] },
-  { path: 'product-list', component: ProductListComponent, canActivate: [AuthGuard] }
+  { path: 'product-list', component: ProductListComponent, canActivate: [AuthGuard] },
+  { path: 'cart', component: CartComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({
