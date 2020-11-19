@@ -45,21 +45,15 @@ var StoreProduct = (req, res) => {
 }
 
 var UpdateProduct = (req, res) => {
-    var code = req.body.code;
+    var id = req.body._id;
     var updateCode = req.body.ucode;
     var updateName = req.body.name;
-    var updateDetails = req.body.name;
+    var updateDetails = req.body.details;
     var updateImage = req.body.image;
     var updatePrice = req.body.price;
     var updateCompany = req.body.company;
 
-    if(code=="null"){
-        code = null;
-    }else{
-        code = req.body.code;
-    }
-
-    ProductModel.updateOne({code:code}, {$set:{code:updateCode, name:updateName,
+    ProductModel.updateOne({_id:id}, {$set:{code:updateCode, name:updateName,
         details:updateDetails, image:updateImage, price:updatePrice, company:updateCompany}},
         (err, result) => {
             

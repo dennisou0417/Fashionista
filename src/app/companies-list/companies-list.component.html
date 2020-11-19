@@ -61,6 +61,9 @@
 <div *ngIf="updateFlag" class = "container">
     <h4>Update A Company</h4>
     <form #updateForm="ngForm" (ngSubmit)="updateCompany(updateForm.value)">
+        <select class="selectpicker dropdown" name="_id" data-live-search="true" ngModel>
+            <option *ngFor="let c of companies" [value]="c._id">{{c.name}}</option>
+        </select><br /><br />
         <input type="text" placeholder="Enter Company Name" name="name" ngModel><br /><br/>
         <input type="text" placeholder="Enter Details" name="details" ngModel><br /><br/>
         <input type="submit" value="Update A Company">

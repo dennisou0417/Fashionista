@@ -31,9 +31,10 @@ var StoreCompany = (req, res) => {
 }
 
 var UpdateCompany = (req, res) => {
+    var updateId = req.body._id;
     var updateName = req.body.name;
     var updateDetails = req.body.details;
-    CompanyModel.updateOne({name:updateName},{$set:{name:updateName,details:updateDetails}}, (err, result) => {
+    CompanyModel.updateOne({_id:updateId},{$set:{name:updateName,details:updateDetails}}, (err, result) => {
         if(err) throw err;
 
         if(result.nModified > 0){

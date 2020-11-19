@@ -69,6 +69,7 @@ export class ProductListComponent implements OnInit {
       this.addFlag=false;
       this.deleteFlag=false;
       this.message="";
+      this.productService.getAllProduct().subscribe(data => this.products = data);
     }else{
       this.updateFlag=false;
     }

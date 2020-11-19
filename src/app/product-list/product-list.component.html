@@ -93,7 +93,9 @@
 <div *ngIf="updateFlag" class = "container">
     <h4>Update A Product</h4>
     <form #updateForm="ngForm" (ngSubmit)="updateProduct(updateForm.value)">
-        <input type="text" placeholder="Enter Product Code" name="code" ngModel><br/><br/>
+        <select class="selectpicker dropdown" name="_id" data-live-search="true" ngModel>
+            <option *ngFor="let p of products" [value]="p._id">{{p.name}}</option>
+        </select><br/><br/>
         <input type="text" placeholder="Enter Updated Product Code" name="ucode" ngModel><br/><br/>
         <input type="text" placeholder="Enter Product Name" name="name" ngModel><br/><br/>
         <input type="text" placeholder="Enter Product Details" name="details" ngModel><br/><br/>

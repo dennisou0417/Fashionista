@@ -64,6 +64,9 @@ export class CompaniesListComponent implements OnInit {
       this.addFlag=false;
       this.deleteFlag=false;
       this.message="";
+      this.companyService.getCompanies().subscribe(result => {
+        this.companies = result;
+      })
     }else{
       this.updateFlag=false;
     }
