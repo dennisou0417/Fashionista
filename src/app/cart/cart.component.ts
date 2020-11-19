@@ -79,7 +79,7 @@ export class CartComponent implements OnInit {
 		let index: number = -1;
 		for (var i = 0; i < cart.length; i++) {
 			let item: Item = JSON.parse(cart[i]);
-			if (item.product.code == code) {
+			if (item.product[0].code == code) {
 				cart.splice(i, 1);
 				break;
 			}
