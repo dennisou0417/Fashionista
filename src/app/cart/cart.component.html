@@ -15,17 +15,17 @@
             <td align="center">
                 <button (click)="remove(item.product.code)">Remove Item</button>
             </td>
-            <td>{{item.product.code}}</td>
-            <td>{{item.product.company.name}}</td>
-            <td>{{item.product.name}}</td>
-            <td><img class="productImage" src="{{item.product.image}}"></td>
-            <td>{{item.product.price}}</td>
+            <td>{{item.product[0].code}}</td>
+            <td>{{item.product[0].company.name}}</td>
+            <td>{{item.product[0].name}}</td>
+            <td><img class="productImage" src="{{item.product[0].image}}"></td>
+            <td>{{item.product[0].price}}</td>
             <td>{{item.quantity}}</td>
-            <td>{{item.product.price * item.quantity}}</td>
+            <td>{{item.product[0].price * item.quantity}}</td>
         </tr>
         <tr>
             <td colspan="7" align="right">Total</td>
-            <td>{{total}}</td>
+            <td>${{total}}</td>
         </tr>
     </table>
 </div>

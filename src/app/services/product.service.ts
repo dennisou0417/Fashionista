@@ -17,6 +17,10 @@ export class ProductService {
   getProductByCode(code):Observable<Product>{
     return this.httpClient.get<Product>("http://localhost:5000/products/"+code);
   }
+
+  findProductByCode(code):Promise<Product>{
+    return this.httpClient.get<Product>("http://localhost:5000/products/"+code).toPromise();
+  }
   
   getProductByCompany(companyName):Observable<Product[]>{
     return this.httpClient.get<Product[]>("http://localhost:5000/productsByBrand/"+companyName);

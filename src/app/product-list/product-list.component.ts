@@ -126,7 +126,7 @@ export class ProductListComponent implements OnInit {
   }
 
   addToCart(code){
-    this.cart.addToCart(code);
+    this.cart.findByCode(code);
   }
 
 }
