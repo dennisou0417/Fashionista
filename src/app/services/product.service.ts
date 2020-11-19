@@ -8,16 +8,16 @@ import { Product } from "../models/product";
 })
 export class ProductService {
 
-  constructor(public httpClient:HttpClient) { }
+  constructor(public httpClient:HttpClient) {}
 
   getAllProduct():Observable<Product[]>{
     return this.httpClient.get<Product[]>("http://localhost:5000/products");
   }
 
-  getProductByName(code):Observable<Product>{
+  getProductByCode(code):Observable<Product>{
     return this.httpClient.get<Product>("http://localhost:5000/products/"+code);
   }
-
+  
   getProductByCompany(companyName):Observable<Product[]>{
     return this.httpClient.get<Product[]>("http://localhost:5000/productsByBrand/"+companyName);
   }

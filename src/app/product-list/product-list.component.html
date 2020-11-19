@@ -50,7 +50,9 @@
                 <td>{{p.details}}</td>
                 <td><img class="productImage" src="{{p.image}}"></td>
                 <td>${{p.price}}</td>
-                <td *ngIf="auth.isCustomer()">Add To Cart</td>
+                <td *ngIf="auth.isCustomer()">
+                    <button (click)="addToCart(p.code)">Add To Cart</button>
+                </td>
             </tr>
         </tbody>
     </table>
@@ -58,8 +60,8 @@
 
 <div *ngIf="findFlag" class = "container">
     <h4>Search Product Code</h4>
-    <input type="text" placeholder="Enter Product Code" #pName ngModel><br/><br/>
-    <button (click)="findByName(pName.value)">Search Product</button>
+    <input type="text" placeholder="Enter Product Code" #pCode ngModel><br/><br/>
+    <button (click)="findByCode(pCode.value)">Search Product</button>
     
     <div *ngIf="showTableFlag">
         <br/>

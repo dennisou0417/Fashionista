@@ -2,16 +2,17 @@
     {{ notify }}
 </div>
 <hr />
+<div class="container">
+    <h4>Welcome to Contemporary Fashion</h4>
+</div>
+
+<div *ngIf="loggedOut == false && auth.isAdmin()" class="container">
+    Please Login to Continue
+</div>
+
+<br />
 <div *ngIf="loggedIn == true && auth.isAdmin()" class="container">
     <a class="nav-link btn btn-success" [routerLink]="['/product-list']">Manage Products</a>
     <br />
     <a class="nav-link btn btn-success" [routerLink]="['/companies-list']">Manage Companies</a>
-</div>
-
-<div *ngIf="loggedOut" class="container">
-    Please Login To Continue.
-</div>
-
-<div *ngIf="loggedIn == true && auth.isCustomer()" class="container">
-    <h4>Welcome to the home page!</h4>
 </div>

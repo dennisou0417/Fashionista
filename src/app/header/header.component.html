@@ -1,6 +1,7 @@
 <nav class="navbar navbar-light navbar-expand-lg" style="background-color: #e3f2fd;">
   <div class="container">
-    <a routerLink="/" class="navbar-brand" routerLinkActive="active">Admin Portal</a>
+    <a *ngIf="!auth.isAuthenticated() || auth.isCustomer(); else elseBlock" routerLink="/" class="navbar-brand" routerLinkActive="active">Contemporary Fashion</a>
+    <ng-template #elseBlock><a routerLink="/" class="navbar-brand" routerLinkActive="active">Admin Portal</a></ng-template>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
         <ng-container *ngIf="!auth.isAuthenticated()">

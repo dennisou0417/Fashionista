@@ -31,7 +31,7 @@ import { CartComponent } from './cart/cart.component';
     ReactiveFormsModule,
     AuthModule
   ],
-  providers: [],
+  providers: [CartComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -4,7 +4,7 @@ import { ProductService } from './../services/product.service';
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../models/product';
 import { Company } from '../models/company';
-import { relativeTimeThreshold } from 'moment';
+import { CartComponent } from '../cart/cart.component';
 
 @Component({
   selector: 'app-product-list',
@@ -23,7 +23,7 @@ export class ProductListComponent implements OnInit {
   deleteFlag = false;
   brandFlag:boolean = false;
   message:string = "";
-  constructor(public productService:ProductService, public companyService:CompanyService, public auth:AuthService) { }
+  constructor(public productService:ProductService, public companyService:CompanyService, public auth:AuthService, private cart:CartComponent) { }
 
   ngOnInit(): void {
     this.companyService.getCompanies().subscribe(data => {this.companies = data});
@@ -54,10 +54,11 @@ export class ProductListComponent implements OnInit {
     }
   }
 
-  findByName(nameRef):void{
+  findByCode(code){
     this.showTableFlag=true;
-    this.productService.getProductByName(nameRef).subscribe(result => 
+    this.productService.getProductByCode(code).subscribe(result => 
       this.product = result)
+      console.log(this.product);
   }
 
   showUpdate():void{
@@ -121,6 +122,10 @@ export class ProductListComponent implements OnInit {
     this.productService.getProductByCompany(companyId).subscribe(result => this.products=result);
     console.log(companyId);
     this.viewAllFlag=true;
+  }
+
+  addToCart(code){
+    this.cart.addToCart(code);
   }
 
 }

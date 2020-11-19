@@ -10,8 +10,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class HomeComponent implements OnInit {
 
   notify: string;
+  loggedOut: boolean = false;
   loggedIn: boolean = false;
-  loggedOut:boolean = true;
 
   constructor(private router: Router, private route: ActivatedRoute, public auth:AuthService) { }
 
@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
       const key1 = 'loggedin';
       if (params[key1] === 'success') {
         this.loggedIn = true;
-        this.loggedOut = false;
+        this.loggedOut = true;
         this.notify = 'You have been successfully logged in. Welcome home';
       }
     });
